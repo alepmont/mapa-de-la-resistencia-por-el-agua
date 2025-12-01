@@ -2,27 +2,8 @@
 // Los marcadores y datos se gestionan directamente en Google My Maps
 
 // Array de contenido para el panel lateral (noticias e Instagram)
-// Contenido embebido directamente en el código para evitar problemas de CORS
-let contenido = [
-    {
-        "tipo": "noticia",
-        "imagen": "https://via.placeholder.com/300x200/1D3C78/ffffff?text=Resistencia",
-        "texto": "Mapa de la Resistencia contra San Jorge - Seguimiento de acciones",
-        "link": "https://www.laizquierdadiario.com/Mendoza-que-se-voto-y-como-sigue-la-lucha-en-defensa-del-agua"
-    },
-    {
-        "tipo": "noticia",
-        "imagen": "https://via.placeholder.com/300x200/51CE70/ffffff?text=Accion",
-        "texto": "Únete a las acciones en defensa del agua y el territorio",
-        "link": "#"
-    },
-    {
-        "tipo": "noticia",
-        "imagen": "https://via.placeholder.com/300x200/a1344e/ffffff?text=Lucha",
-        "texto": "La lucha continúa en defensa de nuestros recursos naturales",
-        "link": "#"
-    }
-];
+// Se carga desde contenido.json
+let contenido = [];
 
 // Función para obtener la imagen y título de una noticia desde su URL
 async function obtenerDatosDeNoticia(url) {
@@ -120,24 +101,24 @@ async function renderizarContenido() {
     }
 }
 
-// Función para cargar contenido desde un archivo JSON (fallback si falla el contenido embebido)
-async function cargarContenidoDesdeJSON(url = 'contenido-ejemplo.json') {
+// Función para cargar contenido desde un archivo JSON
+async function cargarContenidoDesdeJSON(url = 'contenido.json') {
     try {
         const response = await fetch(url);
         if (!response.ok) {
-            console.warn('No se pudo cargar el JSON externo, usando contenido embebido');
+            console.error('No se pudo cargar el JSON:', response.status);
             return false;
         }
         const data = await response.json();
         if (data && data.length > 0) {
-            contenido = data; // Reemplazar contenido completo solo si hay datos
+            contenido = data;
             await renderizarContenido();
-            console.log('Contenido cargado exitosamente desde JSON externo');
+            console.log('Contenido cargado exitosamente desde:', url);
             return true;
         }
         return false;
     } catch (error) {
-        console.warn('Error al cargar JSON externo, usando contenido embebido:', error);
+        console.error('Error al cargar JSON:', error);
         return false;
     }
 }
@@ -151,17 +132,11 @@ window.addEventListener('load', async () => {
         }, index * 100);
     });
     
-    // Intentar cargar desde JSON, si falla usar contenido embebido
-    const cargado = await cargarContenidoDesdeJSON();
-    
-    // Si no se pudo cargar el JSON, renderizar el contenido embebido
-    if (!cargado && contenido.length > 0) {
-        await renderizarContenido();
-        console.log('Usando contenido embebido en el código');
-    }
+    // Cargar desde contenido.json
+    await cargarContenidoDesdeJSON();
 });
 
-// Función global para actualizar contenido (solo para desarrollo local)
+// Función global para actualizar contenido
 window.actualizarContenido = function(nuevoContenido) {
     contenido = nuevoContenido;
     renderizarContenido();
