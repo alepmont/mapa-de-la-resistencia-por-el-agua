@@ -6,14 +6,20 @@
 let contenido = [
     {
         "tipo": "noticia",
+        "imagen": "https://via.placeholder.com/300x200/1D3C78/ffffff?text=Resistencia",
+        "texto": "Mapa de la Resistencia contra San Jorge - Seguimiento de acciones",
         "link": "https://www.laizquierdadiario.com/Mendoza-que-se-voto-y-como-sigue-la-lucha-en-defensa-del-agua"
     },
     {
-        "tipo": "instagram",
-        "url": "https://www.instagram.com/p/EXAMPLE1/"
+        "tipo": "noticia",
+        "imagen": "https://via.placeholder.com/300x200/51CE70/ffffff?text=Accion",
+        "texto": "Únete a las acciones en defensa del agua y el territorio",
+        "link": "#"
     },
     {
         "tipo": "noticia",
+        "imagen": "https://via.placeholder.com/300x200/a1344e/ffffff?text=Lucha",
+        "texto": "La lucha continúa en defensa de nuestros recursos naturales",
         "link": "#"
     }
 ];
