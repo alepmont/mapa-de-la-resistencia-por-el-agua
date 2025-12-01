@@ -37,9 +37,18 @@ body {
 .map-header {
     background: linear-gradient(135deg, var(--color-verde) 0%, #3ba858 100%);
     padding: 20px;
-    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
     border-bottom: 3px solid var(--color-azul);
     box-shadow: 0 2px 10px rgba(81, 206, 112, 0.3);
+}
+
+.header-logo-img {
+    height: 60px;
+    width: auto;
+    object-fit: contain;
 }
 
 .map-header h1 {
