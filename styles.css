@@ -201,7 +201,7 @@ body {
 /* Responsive */
 @media (max-width: 1200px) {
     .sidebar-right {
-        width: 250px;
+        width: 320px;
     }
 }
 
@@ -210,13 +210,98 @@ body {
         flex-direction: column;
     }
     
+    /* Header del mapa en móvil */
+    .map-header {
+        padding: 15px 10px;
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .header-logo-img {
+        height: 60px;
+    }
+    
+    .map-header h1 {
+        font-size: 18px;
+        letter-spacing: 1px;
+        text-align: center;
+    }
+    
+    /* Panel lateral en móvil */
     .sidebar-right {
         width: 100%;
         height: auto;
-        max-height: 300px;
+        max-height: none;
+        order: 2;
     }
     
+    .sidebar-right h3 {
+        font-size: 20px;
+    }
+    
+    /* Mapa en móvil */
     .map-container {
-        height: 400px;
+        height: 50vh;
+        min-height: 300px;
+        order: 1;
+    }
+    
+    #map {
+        min-height: 250px;
+    }
+    
+    /* Noticias en móvil */
+    .news-item img {
+        height: 150px;
+    }
+    
+    .news-item p {
+        font-size: 14px;
+    }
+    
+    /* Instagram embeds en móvil */
+    .instagram-embed {
+        min-height: 350px;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Header más compacto en pantallas pequeñas */
+    .map-header {
+        padding: 10px 5px;
+    }
+    
+    .header-logo-img {
+        height: 50px;
+    }
+    
+    .map-header h1 {
+        font-size: 16px;
+    }
+    
+    /* Panel lateral más compacto */
+    .sidebar-right {
+        padding: 20px 15px;
+    }
+    
+    .sidebar-right h3 {
+        font-size: 18px;
+        margin-bottom: 20px;
+    }
+    
+    /* Mapa más pequeño */
+    .map-container {
+        height: 40vh;
+        min-height: 250px;
+    }
+    
+    /* Noticias más compactas */
+    .news-item img {
+        height: 120px;
+    }
+    
+    .news-item p {
+        font-size: 13px;
+        line-height: 1.4;
     }
 }
