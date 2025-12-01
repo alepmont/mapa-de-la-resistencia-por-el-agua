@@ -206,8 +206,14 @@ body {
 }
 
 @media (max-width: 768px) {
+    body {
+        overflow: auto;
+    }
+    
     .container {
         flex-direction: column;
+        height: auto;
+        min-height: 100vh;
     }
     
     /* Header del mapa en móvil */
@@ -232,7 +238,10 @@ body {
         width: 100%;
         height: auto;
         max-height: none;
+        overflow-y: visible;
         order: 2;
+        border-left: none;
+        border-top: 2px solid var(--color-azul);
     }
     
     .sidebar-right h3 {
@@ -284,6 +293,7 @@ body {
     /* Panel lateral más compacto */
     .sidebar-right {
         padding: 20px 15px;
+        overflow-y: visible;
     }
     
     .sidebar-right h3 {
@@ -298,6 +308,10 @@ body {
     }
     
     /* Noticias más compactas */
+    .news-section {
+        gap: 20px;
+    }
+    
     .news-item img {
         height: 120px;
     }
