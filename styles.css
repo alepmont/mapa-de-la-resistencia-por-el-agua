@@ -250,13 +250,13 @@ body {
     
     /* Mapa en móvil */
     .map-container {
-        height: 50vh;
-        min-height: 300px;
+        height: 60vh;
+        min-height: 350px;
         order: 1;
     }
     
     #map {
-        min-height: 250px;
+        min-height: 300px;
     }
     
     /* Noticias en móvil */
@@ -303,8 +303,8 @@ body {
     
     /* Mapa más pequeño */
     .map-container {
-        height: 40vh;
-        min-height: 250px;
+        height: 55vh;
+        min-height: 300px;
     }
     
     /* Noticias más compactas */
