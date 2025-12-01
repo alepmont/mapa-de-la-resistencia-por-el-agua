@@ -1,9 +1,22 @@
-// El mapa ahora se carga desde Google My Maps
+// El mapa se carga desde Google My Maps
 // Los marcadores y datos se gestionan directamente en Google My Maps
 
 // Array de contenido para el panel lateral (noticias e Instagram)
-// Este array se carga solo desde el archivo JSON
-let contenido = [];
+// Contenido embebido directamente en el código para evitar problemas de CORS
+let contenido = [
+    {
+        "tipo": "noticia",
+        "link": "https://www.laizquierdadiario.com/Mendoza-que-se-voto-y-como-sigue-la-lucha-en-defensa-del-agua"
+    },
+    {
+        "tipo": "instagram",
+        "url": "https://www.instagram.com/p/EXAMPLE1/"
+    },
+    {
+        "tipo": "noticia",
+        "link": "#"
+    }
+];
 
 // Función para obtener la imagen y título de una noticia desde su URL
 async function obtenerDatosDeNoticia(url) {
@@ -101,20 +114,24 @@ async function renderizarContenido() {
     }
 }
 
-// Función para cargar contenido desde un archivo JSON (única forma permitida)
+// Función para cargar contenido desde un archivo JSON (fallback si falla el contenido embebido)
 async function cargarContenidoDesdeJSON(url = 'contenido-ejemplo.json') {
     try {
         const response = await fetch(url);
         if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
+            console.warn('No se pudo cargar el JSON externo, usando contenido embebido');
+            return false;
         }
         const data = await response.json();
-        contenido = data; // Reemplazar contenido completo
-        await renderizarContenido();
-        console.log('Contenido cargado exitosamente desde JSON');
-        return true;
+        if (data && data.length > 0) {
+            contenido = data; // Reemplazar contenido completo solo si hay datos
+            await renderizarContenido();
+            console.log('Contenido cargado exitosamente desde JSON externo');
+            return true;
+        }
+        return false;
     } catch (error) {
-        console.error('Error al cargar contenido desde JSON:', error);
+        console.warn('Error al cargar JSON externo, usando contenido embebido:', error);
         return false;
     }
 }
@@ -128,9 +145,18 @@ window.addEventListener('load', async () => {
         }, index * 100);
     });
     
-    // Cargar el contenido automáticamente desde el JSON al iniciar
-    await cargarContenidoDesdeJSON();
+    // Intentar cargar desde JSON, si falla usar contenido embebido
+    const cargado = await cargarContenidoDesdeJSON();
+    
+    // Si no se pudo cargar el JSON, renderizar el contenido embebido
+    if (!cargado && contenido.length > 0) {
+        await renderizarContenido();
+        console.log('Usando contenido embebido en el código');
+    }
 });
 
-// NO exponer funciones de modificación al scope global por seguridad
-// Solo permitir carga desde JSON
+// Función global para actualizar contenido (solo para desarrollo local)
+window.actualizarContenido = function(nuevoContenido) {
+    contenido = nuevoContenido;
+    renderizarContenido();
+};
