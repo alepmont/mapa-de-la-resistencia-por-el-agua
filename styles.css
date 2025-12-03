@@ -49,10 +49,15 @@ body {
     display: flex;
     align-items: center;
     transition: transform 0.3s ease;
+    background-color: var(--color-rojo);
+    padding: 10px 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 .header-logo-link:hover {
     transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
 }
 
 .header-logo-img {
