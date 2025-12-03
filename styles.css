@@ -160,11 +160,25 @@ body {
     margin-bottom: 15px;
 }
 
-.news-item p {
+.news-title {
     font-size: 16px;
     font-weight: bold;
     line-height: 1.5;
     color: #e0e0e0;
+    margin-bottom: 10px;
+}
+
+.news-description {
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1.4;
+    color: #d0d0d0;
+    margin-top: 5px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid var(--color-azul);
+}
+
+.news-item p:last-child {
     border-bottom: 2px solid var(--color-azul);
     padding-bottom: 15px;
 }

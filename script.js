@@ -62,11 +62,20 @@ async function renderizarContenido() {
             img.alt = `Noticia ${index + 1}`;
             img.loading = 'lazy'; // Carga perezosa para mejor rendimiento
             
-            const p = document.createElement('p');
-            p.textContent = item.texto || 'Sin título';
+            const titulo = document.createElement('p');
+            titulo.className = 'news-title';
+            titulo.textContent = item.texto || 'Sin título';
             
             newsItem.appendChild(img);
-            newsItem.appendChild(p);
+            newsItem.appendChild(titulo);
+            
+            // Agregar bajada si existe
+            if (datosNoticia && datosNoticia.descripcion) {
+                const bajada = document.createElement('p');
+                bajada.className = 'news-description';
+                bajada.textContent = datosNoticia.descripcion;
+                newsItem.appendChild(bajada);
+            }
             
             // Agregar evento de clic
             if (item.link) {
