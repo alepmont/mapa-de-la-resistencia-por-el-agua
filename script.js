@@ -40,9 +40,11 @@ async function renderizarContenido() {
             newsItem.className = 'news-item';
             newsItem.dataset.index = index;
             
+            let datosNoticia = null;
+            
             // Si hay link válido, intentar obtener datos automáticamente
             if (item.link && item.link !== '#') {
-                const datosNoticia = await obtenerDatosDeNoticia(item.link);
+                datosNoticia = await obtenerDatosDeNoticia(item.link);
                 
                 if (datosNoticia) {
                     // Actualizar imagen si no existe o es placeholder
