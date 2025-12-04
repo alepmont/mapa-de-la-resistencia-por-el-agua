@@ -62,6 +62,16 @@ body {
     filter: drop-shadow(0 0 8px rgba(0, 0, 0, 0.8)) drop-shadow(0 0 4px rgba(0, 0, 0, 0.6));
 }
 
+.header-title-link {
+    text-decoration: none;
+    color: inherit;
+    transition: opacity 0.3s ease;
+}
+
+.header-title-link:hover {
+    opacity: 0.85;
+}
+
 .map-header h1 {
     margin: 0;
     font-size: 28px;
